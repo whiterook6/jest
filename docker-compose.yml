@@ -1,0 +1,65 @@
+version: "3.5"
+
+volumes:
+  server_node_modules:
+
+services:
+  server-base: &server-base
+    image: node:10-alpine
+    working_dir: /server
+    volumes:
+      - ./:/server
+      - server_node_modules:/server/node_modules
+
+  server-install:
+    <<: *server-base
+    command: "yarn install"
+
+  server-serve:
+    <<: *server-base
+    depends_on:
+      - db
+    ports:
+      - 8888:8888
+    environment:
+      DB_NAME: database
+      DB_HOST: db
+      DB_USERNAME: root
+      DB_PASSWORD: example
+      SERVER_PORT: 8888
+    command: "yarn run serve"
+
+  server-test:
+    <<: *server-base
+    depends_on:
+      - db_test
+    environment:
+      DB_NAME: database
+      DB_HOST: db_test
+      DB_USERNAME: root
+      DB_PASSWORD: example
+    command: "yarn run test"
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: database
+    ports:
+      - 3306:3306
+
+  db_test:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: database
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
