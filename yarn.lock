@@ -351,6 +351,11 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/faker@^4.1.8":
+  version "4.1.8"
+  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-4.1.8.tgz#95240361f1379addae0a005ced7c5c77b0b1e1d8"
+  integrity sha512-9ARxZRyXXCMMf8KjYhnD+GHE789HGwIqa1dolCRl/C6ExwvBIUmnIktLeY71TPmFOQiU3DQwrbQEX0pkyqX1tQ==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.1.tgz#42995b446db9a48a11a07ec083499a860e9138ff"
@@ -387,7 +392,7 @@
   version "1.0.0"
   resolved "https://codeload.github.com/types/mysql2/tar.gz/e0344683f6fb24334bd81c096b2edadc1a35bc59"
   dependencies:
-    "@types/mysql" types/mysql
+    "@types/mysql" types/mysql#v2.0.0
 
 "@types/mysql@^2.15.8":
   version "2.15.8"
@@ -396,9 +401,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/mysql@types/mysql":
+"@types/mysql@types/mysql#v2.0.0":
   version "2.0.0"
-  resolved "https://codeload.github.com/types/mysql/tar.gz/a63e8fbd03aa08c7d66183d70885e6e079b76578"
+  resolved "https://codeload.github.com/types/mysql/tar.gz/da645a82afd66419ed439dddf174648aa68ba1f9"
 
 "@types/node@*", "@types/node@^12.12.15":
   version "12.12.15"
@@ -1474,6 +1479,11 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
+
+faker@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/faker/-/faker-4.1.0.tgz#1e45bbbecc6774b3c195fad2835109c6d748cc3f"
+  integrity sha1-HkW7vsxndLPBlfrSg1EJxtdIzD8=
 
 fast-deep-equal@^2.0.1:
   version "2.0.1"
