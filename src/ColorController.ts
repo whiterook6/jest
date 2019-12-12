@@ -18,17 +18,8 @@ export class ColorController extends Controller {
 ) ENGINE='InnoDB' COLLATE 'utf8mb4_general_ci';`);
   }
 
-  public list = async () => {
-    const [rows] = await this.query("SELECT `colors`.* FROM `colors` ORDER BY `id` ASC");
-    if (!Array.isArray(rows)){
-      throw new Error("Error getting colors");
-    } else {
-      return rows as IColor[];
-    }
-  }
-
   public get = async (id: number) => {
-    const [rows] = await this.query("SELECT `colors`.* FROM `colors` WHERE `id` = ? LIMIT 1", [id]);
+    const [rows] = await this.query("SELECT `colors`.* FROM `colors` WHERE `id` = ? ORDER BY `id` ASC LIMIT 1", [id]);
 
     if (!Array.isArray(rows)) {
       throw new Error("Cannot find color");
@@ -36,6 +27,27 @@ export class ColorController extends Controller {
       return null;
     } else {
       return rows[0] as IColor;
+    }
+  }
+
+  public list = async () => {
+    const [rows] = await this.query("SELECT `colors`.* FROM `colors` ORDER BY `id` ASC LIMIT 1");
+    if (!Array.isArray(rows)){
+      throw new Error("Error getting colors");
+    } else {
+      return rows as IColor[];
+    }
+  }
+
+  public getBy = async (key: keyof IColor, value: string | number): Promise<IColor[]> => {
+    const where = {
+      [key]: value
+    };
+    const [rows] = await this.query("SELECT `colors`.* FROM `colors` WHERE ?", [where]);
+    if (!Array.isArray(rows)){
+      throw new Error("Cannot query colors");
+    } else {
+      return rows as IColor[];
     }
   }
 

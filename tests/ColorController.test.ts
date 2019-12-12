@@ -5,6 +5,7 @@ import { Connection } from "mysql2/promise";
 
 describe("Color Controller Test", () => {
   let connection: Connection;
+
   beforeAll(async (done) => {
     connection = await Database.getConnection();
     done();
@@ -26,8 +27,8 @@ describe("Color Controller Test", () => {
     } finally {
       await connection.rollback();
       connection.destroy();
-      done();
     }
+    done();
   });
 
   it("can create a color", async (done) => {
@@ -51,8 +52,13 @@ describe("Color Controller Test", () => {
     } finally {
       await connection.rollback();
       connection.destroy();
-      done();
     }
+    done();
+  });
+
+  it("can get by ID", async (done) => {
+    console.log("Implement me");
+    done();
   });
 
   afterAll(async (done) => {
